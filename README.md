@@ -1,5 +1,7 @@
 # WFA Application
 
+[![Build Status](https://travis-ci.org/MatthewEdge/whiskey-foxtrot-alpha.svg?branch=master)](https://travis-ci.org/MatthewEdge/whiskey-foxtrot-alpha)
+
 by Matthew Edge
 
 ## Building

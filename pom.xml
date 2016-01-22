@@ -118,8 +118,8 @@
                 <configuration>
                     <scalaVersion>${scala.version}</scalaVersion>
                     <highlighting>true</highlighting>
-                    <minimumCoverage>80</minimumCoverage>
-                    <failOnMinimumCoverage>true</failOnMinimumCoverage>
+                    <!--<minimumCoverage>80</minimumCoverage>-->
+                    <!--<failOnMinimumCoverage>true</failOnMinimumCoverage>-->
                 </configuration>
                 <executions>
                     <execution>
