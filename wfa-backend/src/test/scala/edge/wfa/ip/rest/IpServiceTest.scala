@@ -29,7 +29,27 @@ class IpServiceTest extends BaseTest with ScalatestRouteTest with JsonSupport {
 
   "GET /ip" should "return the correct failure JSON response for an invalid IPv4 address request" in {
     val testIp = "192.168"
-    val expectedResponse = FailureResponse(testIp, "Invalid IP format. Only IPv4 and IPv6 addresses supported. Got: 192.168")
+    val expectedResponse = FailureResponse(testIp, s"Invalid IP format. Only IPv4 and IPv6 addresses supported. Got: $testIp")
+
+    Get(s"/ip?ip=$testIp") ~> TestService.routes ~> check {
+      responseAs[FailureResponse] shouldBe expectedResponse
+      responseEntity shouldEqual HttpEntity(ContentTypes.`application/json`, expectedResponse.toJson.prettyPrint)
+    }
+  }
+
+  "GET /ip" should "return the correct JSON response for a valid IPv6 address request" in {
+    val testIp = "2000:123A:ABCD:73F3:1234:1234:1234:1234"
+    val expectedResponse = SuccessResponse(testIp, "42531122511263480549358276640189233760")
+
+    Get(s"/ip?ip=$testIp") ~> TestService.routes ~> check {
+      responseAs[SuccessResponse] shouldEqual expectedResponse
+      responseEntity shouldEqual HttpEntity(ContentTypes.`application/json`, expectedResponse.toJson.prettyPrint)
+    }
+  }
+
+  "GET /ip" should "return the correct failure JSON response for an invalid IPv6 address request" in {
+    val testIp = "abcd:ef1h"
+    val expectedResponse = FailureResponse(testIp, s"Invalid IP format. Only IPv4 and IPv6 addresses supported. Got: $testIp")
 
     Get(s"/ip?ip=$testIp") ~> TestService.routes ~> check {
       responseAs[FailureResponse] shouldBe expectedResponse
