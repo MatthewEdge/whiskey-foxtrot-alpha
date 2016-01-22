@@ -3,7 +3,7 @@ package edge.wfa.ip.rest
 import akka.http.scaladsl.server.Directives._
 import akka.pattern.ask
 import edge.wfa.Akka
-import edge.wfa.ip.{ConvertIp, IpConversionActor}
+import edge.wfa.ip.{IpConversionFailed, IpConverted, ConvertIp, IpConversionActor}
 
 import scala.util.{Failure, Success}
 
@@ -25,8 +25,8 @@ trait IpService extends Service {
             case Success(res) =>
               // A successful future doesn't necessarily mean a successful conversion
               res match {
-                case conv: BigInt => complete(SuccessResponse(ip, res.toString))
-                case failedReason: String => complete(FailureResponse(ip, failedReason))
+                case IpConverted(_, intValue) => complete(SuccessResponse(ip, intValue.toString()))
+                case IpConversionFailed(_, failedReason) => complete(FailureResponse(ip, failedReason))
               }
             case Failure(ex) => failWith(ex)
           }

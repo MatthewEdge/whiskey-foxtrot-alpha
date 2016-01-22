@@ -18,12 +18,19 @@ class IpConversionActor extends EdgeActor {
     case ConvertIp(ipAddress) =>
       try {
         val result = IpConversions.ipToInt(ipAddress)
-        sender ! result
+        val response = IpConverted(ipAddress, result)
 
-        // Emit converted event
-        emit(IpConverted(ipAddress, result))
-      } catch {
-        case e: RuntimeException => sender ! e.getMessage
+        // Emit converted event, then return the event to the sender
+        emit(response)
+        sender ! response
+      }
+      catch {
+        case e: RuntimeException =>
+          val evt = IpConversionFailed(ipAddress, e.getMessage)
+
+          // Emit the failure, then send it to the sender
+          emit(evt)
+          sender ! evt
       }
 
     case m @ _ => unhandled(m)

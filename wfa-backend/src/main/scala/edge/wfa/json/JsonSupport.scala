@@ -10,6 +10,6 @@ import spray.json.DefaultJsonProtocol
   * Created by medge on 1/22/16.
   */
 trait JsonSupport extends SprayJsonSupport with DefaultJsonProtocol {
-  implicit val ipSuccessResponseFormat = jsonFormat4(SuccessResponse)
-  implicit val ipFailureResponseFormat = jsonFormat4(FailureResponse)
+  implicit val successResponseFormat = jsonFormat4(SuccessResponse.apply)
+  implicit val failureResponseFormat = jsonFormat4(FailureResponse.apply)
 }
