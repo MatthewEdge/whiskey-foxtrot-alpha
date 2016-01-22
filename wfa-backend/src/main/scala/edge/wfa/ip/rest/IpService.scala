@@ -10,7 +10,7 @@ import akka.http.scaladsl.server.Directives._
 trait IpService extends Service {
 
   val routes =
-    path("ip" / String) {
+    path("ip") {
       get {
         parameters('ip) { (ip) =>
           complete(s"Not Implemented. Your IP: $ip")
