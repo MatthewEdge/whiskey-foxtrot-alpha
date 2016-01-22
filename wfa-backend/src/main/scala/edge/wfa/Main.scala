@@ -10,7 +10,9 @@ object Main extends App with IpService {
 
   import Akka._
 
-  val bindingFuture = Http().bindAndHandle(routes, "localhost", 8080)
+  val settings = Settings()
 
-  println(s"Server online at http://localhost:8080/\nPress RETURN to stop...")
+  val bindingFuture = Http().bindAndHandle(routes, settings.httpInterface, settings.httpPort)
+
+  println(s"Server online at http://${settings.httpInterface}:${settings.httpPort}/")
 }
