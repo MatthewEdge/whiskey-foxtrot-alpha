@@ -14,15 +14,6 @@ object IpUtils {
     }
   }
 
-  def isIpVersion6(ip: String) = {
-    val ipv6Pattern = """^(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}$""".r
-
-    ipv6Pattern.findFirstIn(ip) match {
-      case Some(s) => true
-      case _ => false
-    }
-  }
-
   /**
     * Delegating method to parse either an IPv4 or IPv6 IP address to it's integer
     * representation
@@ -34,11 +25,8 @@ object IpUtils {
 
     if(isIpVersion4(ipAddress)) {
       ipv4toLong(ipAddress)
-    } else if(isIpVersion6(ipAddress)) {
-      //ipv6toLong(ipAddress)
-      throw new RuntimeException("Not currently supported")
     } else {
-      throw new RuntimeException(s"Invalid IP format. Only IPv4 and IPv6 addresses supported. Got: $ipAddress")
+      throw new RuntimeException(s"Invalid IP format. Only IPv4 addresses are supported. Got: $ipAddress")
     }
   }
 

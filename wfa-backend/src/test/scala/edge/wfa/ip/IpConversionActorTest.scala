@@ -24,4 +24,9 @@ class IpConversionActorTest extends BaseActorTest {
     }
   }
 
+  "IpConversionActor" should "not respond for an unknown message" in {
+      actorRef ! "HAI"
+      expectNoMsg
+  }
+
 }

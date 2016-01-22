@@ -148,6 +148,7 @@
                     <aggregate>true</aggregate>
                     <!--<minimumCoverage>80</minimumCoverage>-->
                     <!--<failOnMinimumCoverage>true</failOnMinimumCoverage>-->
+                    <excludedFiles>edge.wfa.Main</excludedFiles>
                 </configuration>
                 <executions>
                     <execution>
