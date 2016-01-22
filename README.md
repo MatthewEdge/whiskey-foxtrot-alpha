@@ -21,11 +21,16 @@ Tests for the backend application are realized with the ScalaTest testing librar
 be run using
 
     mvn test
-    
-
 
 ## Structure
 
 The web application resides in the wfa-webapp sub-module. The back-end REST service and business logic
 resides in the wfa-backend sub-module. At build time, the web-app is copied over to a known location
 for the backend so it can serve the files as static assets
+
+## Modules
+
+### wfa-backend
+
+The backend module is a Scala application written using core Scala for the IP conversion logic. The REST service
+is built using Spray for the HTTP Server. Akka Actors were used to support concurrent requests.
