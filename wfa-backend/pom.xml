@@ -18,6 +18,7 @@
         <scalatest.version>2.2.5</scalatest.version>
 
         <akka.version>2.4.1</akka.version>
+        <akka.http.version>2.0.2</akka.http.version>
 
         <scoverage.version>1.1.1</scoverage.version>
     </properties>
@@ -33,6 +34,12 @@
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-actor_${scala.binary.version}</artifactId>
             <version>${akka.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-http-experimental_${scala.binary.version}</artifactId>
+            <version>${akka.http.version}</version>
         </dependency>
 
         <!-- Test Dependencies -->

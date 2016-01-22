@@ -4,6 +4,15 @@
 
 by Matthew Edge
 
+## Running
+
+From source, running the ```edge.wfa.Main``` class will spin up the Akka HTTP Web Server on localhost, port 8080. To submit
+IP conversion requests, use the following URL:
+
+    http://localhost:8080/ip?ip=IP_HERE
+    
+Where ```IP_HERE``` is replaced by the desired IPv4 or IPv6 address to convert
+
 ## Building
 
 From the top level directory:
@@ -36,4 +45,4 @@ for the backend so it can serve the files as static assets
 ### wfa-backend
 
 The backend module is a Scala application written using core Scala for the IP conversion logic. The REST service
-is built using Spray for the HTTP Server. Akka Actors were used to support concurrent requests.
+is built using Akka HTTP for the HTTP Server/REST API. Akka Actors were used to support concurrent requests.
