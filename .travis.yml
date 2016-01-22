@@ -3,4 +3,4 @@ scala:
     - 2.11.7
 
 after_success:
-    - coveralls
+    - mvn clean scoverage:report coveralls:report

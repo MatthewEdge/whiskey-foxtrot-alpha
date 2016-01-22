@@ -129,6 +129,7 @@
                 <configuration>
                     <scalaVersion>${scala.version}</scalaVersion>
                     <highlighting>true</highlighting>
+                    <aggregate>true</aggregate>
                     <!--<minimumCoverage>80</minimumCoverage>-->
                     <!--<failOnMinimumCoverage>true</failOnMinimumCoverage>-->
                 </configuration>
@@ -140,6 +141,15 @@
                         <phase>prepare-package</phase>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>4.1.0</version>
+                <configuration>
+                    <repoToken>${env.COVERALLS_TOKEN}</repoToken>
+                    <sourceEncoding>UTF-8</sourceEncoding>
+                </configuration>
             </plugin>
 
             <!-- Package everything together -->
