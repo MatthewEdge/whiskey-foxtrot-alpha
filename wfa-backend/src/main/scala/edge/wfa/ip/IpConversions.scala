@@ -1,6 +1,8 @@
 package edge.wfa.ip
 
 /**
+  * Conversion class to handle converting IPv4 and IPv6 addresses
+  *
   * Created by medge on 1/21/16.
   */
 object IpConversions {
