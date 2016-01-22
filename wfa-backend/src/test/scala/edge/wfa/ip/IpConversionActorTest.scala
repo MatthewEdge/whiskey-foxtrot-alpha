@@ -25,8 +25,23 @@ class IpConversionActorTest extends BaseActorTest {
   }
 
   "IpConversionActor" should "not respond for an unknown message" in {
-      actorRef ! "HAI"
-      expectNoMsg
+    actorRef ! "HAI"
+    expectNoMsg
+  }
+
+  "IpConversionActor" should "emit an event to the eventStream with the converted IP values" in {
+    system.eventStream.subscribe(self, classOf[EdgeEvent])
+
+    val testIp = "192.168.0.1"
+    val expectedResult = BigInt(3232235521L)
+
+    actorRef ! ConvertIp(testIp)
+
+    // First we should get the expected result
+    expectMsg(expectedResult)
+
+    // Then the event should be emitted
+    expectMsgClass(classOf[EdgeEvent])
   }
 
 }

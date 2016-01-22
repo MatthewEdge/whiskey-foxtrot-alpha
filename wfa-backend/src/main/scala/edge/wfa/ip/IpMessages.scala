@@ -14,8 +14,13 @@ package edge.wfa.ip
 case class ConvertIp(ipAddress: String)
 
 /**
+  * Trait to mark Events emitted from Actor classes to the eventStream
+  */
+trait EdgeEvent
+
+/**
   * Event for a converted IP Address
   * @param ipAddress String IP Address
-  * @param intValue Long Converted integer value
+  * @param intValue BigInt Converted integer value
   */
-case class IpConverted(ipAddress: String, intValue: Long)
+case class IpConverted(ipAddress: String, intValue: BigInt) extends EdgeEvent
