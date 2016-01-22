@@ -42,6 +42,12 @@
             <version>${akka.http.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-http-spray-json-experimental_${scala.binary.version}</artifactId>
+            <version>${akka.http.version}</version>
+        </dependency>
+
         <!-- Test Dependencies -->
         <dependency>
             <groupId>org.scalatest</groupId>
