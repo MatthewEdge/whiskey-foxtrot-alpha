@@ -1,8 +1,7 @@
-package edge.wfa.ip.actor
+package edge.wfa.ip
 
 import akka.actor.Props
 import edge.wfa.actor.EdgeActor
-import edge.wfa.ip.IpUtils
 
 /**
   * Actor to convert an IP Address to an integer representation

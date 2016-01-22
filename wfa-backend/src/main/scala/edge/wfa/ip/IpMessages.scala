@@ -1,4 +1,4 @@
-package edge.wfa.ip.actor
+package edge.wfa.ip
 
 /**
   * Message models relating to IP Conversion requests

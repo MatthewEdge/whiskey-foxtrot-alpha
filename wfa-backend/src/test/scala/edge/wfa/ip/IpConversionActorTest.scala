@@ -1,4 +1,4 @@
-package edge.wfa.ip.actor
+package edge.wfa.ip
 
 import akka.testkit.TestActorRef
 import edge.wfa.BaseActorTest
