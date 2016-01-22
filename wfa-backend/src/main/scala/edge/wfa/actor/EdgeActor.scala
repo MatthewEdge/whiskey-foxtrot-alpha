@@ -13,6 +13,13 @@ trait EdgeActor extends Actor with ActorLogging {
   val eventBus = context.system.eventStream
 
   /**
+    * Subscribe the Actor to EdgeEvent events on the Akka Event Stream
+    */
+  def subscribe(): Unit = {
+    eventBus.subscribe(self, classOf[EdgeEvent])
+  }
+
+  /**
     * Publish an EdgeEvent object to the Akka Event Stream
     *
     * @param event EdgeEvent
