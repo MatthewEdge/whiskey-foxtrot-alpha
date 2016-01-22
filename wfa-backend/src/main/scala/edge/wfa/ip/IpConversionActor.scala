@@ -13,7 +13,7 @@ class IpConversionActor extends EdgeActor {
   def receive = {
 
     case ConvertIp(ipAddress) =>
-      val result = IpUtils.ipToInt(ipAddress)
+      val result = IpConversions.ipToInt(ipAddress)
       sender ! result
       emit(IpConverted(ipAddress, result))
 

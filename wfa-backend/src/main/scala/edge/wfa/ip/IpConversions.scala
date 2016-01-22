@@ -3,7 +3,7 @@ package edge.wfa.ip
 /**
   * Created by medge on 1/21/16.
   */
-object IpUtils {
+object IpConversions {
 
   def isIpVersion4(ip: String) = {
     val ipv4Pattern = """^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$""".r
