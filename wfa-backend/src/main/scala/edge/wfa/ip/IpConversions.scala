@@ -7,24 +7,6 @@ package edge.wfa.ip
   */
 object IpConversions {
 
-  def isIpVersion4(ip: String) = {
-    val ipv4Pattern = """^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$""".r
-
-    ipv4Pattern.findFirstIn(ip) match {
-      case Some(s) => true
-      case _ => false
-    }
-  }
-
-  def isIpVersion6(ip: String) = {
-    val ipv6Pattern = """^(?:[a-fA-F0-9]{1,4}:){7}[a-fA-F0-9]{1,4}$""".r
-
-    ipv6Pattern.findFirstIn(ip) match {
-      case Some(s) => true
-      case _ => false
-    }
-  }
-
   /**
     * Delegating method to parse either an IPv4 or IPv6 IP address to it's integer
     * representation
@@ -35,11 +17,26 @@ object IpConversions {
   def ipToInt(ipAddress: String): BigInt = {
 
     if (isIpVersion4(ipAddress)) {
-      ipv4toLong(ipAddress)
+      ipv4ToBigInt(ipAddress)
     } else if (isIpVersion6(ipAddress)) {
-      ipv6toLong(ipAddress)
+      ipv6ToBigInt(ipAddress)
     } else {
       throw new RuntimeException(s"Invalid IP format. Only IPv4 and IPv6 addresses supported. Got: $ipAddress")
+    }
+  }
+
+  /**
+    * Check if the given IP Address string is an IPv4 address
+    *
+    * @param ip String IP Address
+    * @return Boolean
+    */
+  def isIpVersion4(ip: String): Boolean = {
+    val ipv4Pattern = """^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$""".r
+
+    ipv4Pattern.findFirstIn(ip) match {
+      case Some(s) => true
+      case _ => false
     }
   }
 
@@ -50,16 +47,31 @@ object IpConversions {
     * @param ipAddress String IPv4 address
     * @return Long
     */
-  def ipv4toLong(ipAddress: String): Long = {
+  def ipv4ToBigInt(ipAddress: String): BigInt = {
     val octets = ipAddress.split("\\.").map(_.toLong)
 
     octets
       .reverse // To give the appropriate indexes
       .zipWithIndex
       .map {
-        case (octet, idx) => octet * Math.pow(256, idx).toLong
+        case (octet, idx) => BigInt(octet * Math.pow(256, idx).toLong)
       }
       .sum
+  }
+
+  /**
+    * Check if the given IP Address string is an IPv6 address
+    *
+    * @param ip String IP Address
+    * @return Boolean
+    */
+  def isIpVersion6(ip: String): Boolean = {
+    val ipv6Pattern = """^(?:[a-fA-F0-9]{1,4}:){7}[a-fA-F0-9]{1,4}$""".r
+
+    ipv6Pattern.findFirstIn(ip) match {
+      case Some(s) => true
+      case _ => false
+    }
   }
 
   /**
@@ -68,7 +80,7 @@ object IpConversions {
     * @param ipAddress String IPv6 address
     * @return BigInt
     */
-  def ipv6toLong(ipAddress: String): BigInt = {
+  def ipv6ToBigInt(ipAddress: String): BigInt = {
     val groups = ipAddress.split("\\:")
 
     groups
