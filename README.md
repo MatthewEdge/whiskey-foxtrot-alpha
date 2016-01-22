@@ -10,12 +10,13 @@ From the top level directory:
 
     mvn clean package
     
-This will create the uber JAR artifact. A code coverage report is also generated in:
+This will create the uber JAR artifact. 
 
-    target/surefire-reports/scoverage
+A code coverage report is also generated in:
+
+    target/site/scoverage
     
-There are XML reports for CI servers as well as a HTML report for human consumption.
-The project is configured to fail if Code Coverage falls below 80%
+There are XML reports for CI servers as well as a HTML report for human consumption
     
 ## Testing
 
