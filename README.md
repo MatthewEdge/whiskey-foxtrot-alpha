@@ -1,5 +1,7 @@
 # WFA Application
 
+by Matthew Edge
+
 ## Building
 
 From the top level directory:
