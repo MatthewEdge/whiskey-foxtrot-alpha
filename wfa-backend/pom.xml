@@ -155,7 +155,9 @@
                     <aggregate>true</aggregate>
                     <!--<minimumCoverage>80</minimumCoverage>-->
                     <!--<failOnMinimumCoverage>true</failOnMinimumCoverage>-->
-                    <excludedFiles>edge.wfa.Main</excludedFiles>
+                    <excludedPackages>
+                        edge.wfa.Main.*
+                    </excludedPackages>
                 </configuration>
                 <executions>
                     <execution>
