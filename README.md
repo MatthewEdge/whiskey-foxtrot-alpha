@@ -1,6 +1,6 @@
 # WFA Application
 
-[![Build Status](https://travis-ci.org/MatthewEdge/whiskey-foxtrot-alpha.svg?branch=master)](https://travis-ci.org/MatthewEdge/whiskey-foxtrot-alpha)
+[![Build Status](https://travis-ci.org/MatthewEdge/whiskey-foxtrot-alpha.svg?branch=master)](https://travis-ci.org/MatthewEdge/whiskey-foxtrot-alpha) [![Coverage Status](https://coveralls.io/repos/github/MatthewEdge/whiskey-foxtrot-alpha/badge.svg?branch=develop)](https://coveralls.io/github/MatthewEdge/whiskey-foxtrot-alpha?branch=develop)
 
 by Matthew Edge
 
