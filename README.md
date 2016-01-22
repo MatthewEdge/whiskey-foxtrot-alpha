@@ -46,3 +46,7 @@ for the backend so it can serve the files as static assets
 
 The backend module is a Scala application written using core Scala for the IP conversion logic. The REST service
 is built using Akka HTTP for the HTTP Server/REST API. Akka Actors were used to support concurrent requests.
+
+### wfa-webapp
+
+Work in progress
