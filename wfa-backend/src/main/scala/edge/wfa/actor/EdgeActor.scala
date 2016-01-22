@@ -1,6 +1,6 @@
 package edge.wfa.actor
 
-import akka.actor.{Actor, ActorLogging}
+import akka.actor.{Actor, ActorLogging, ActorRef, Props}
 import edge.wfa.ip.EdgeEvent
 
 /**
@@ -19,5 +19,15 @@ trait EdgeActor extends Actor with ActorLogging {
     */
   def emit(event: EdgeEvent): Unit = {
     eventBus.publish(event)
+  }
+
+  /**
+    * Abstraction for creating a new Actor given a Props object
+    *
+    * @param props Props
+    * @return ActorRef newly created Actor
+    */
+  def createActor(props: Props): ActorRef = {
+    context.system.actorOf(props)
   }
 }

@@ -1,8 +1,6 @@
 package edge.wfa
 
-import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
-import akka.stream.ActorMaterializer
 import edge.wfa.ip.rest.IpService
 
 /**
@@ -10,9 +8,7 @@ import edge.wfa.ip.rest.IpService
   */
 object Main extends App with IpService {
 
-  implicit val system = ActorSystem("WFAApplication")
-  implicit val materializer = ActorMaterializer()
-  implicit val ec = system.dispatcher
+  import Akka._
 
   val bindingFuture = Http().bindAndHandle(routes, "localhost", 8080)
 
