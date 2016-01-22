@@ -40,12 +40,12 @@ class IpConversionsTest extends BaseTest {
     IpConversions.isIpVersion6("1") shouldBe false
   }
 
-  "ipToLong()" should "produce the correct integer representation for an IPv4 Address" in {
+  "ipToInt()" should "produce the correct integer representation for an IPv4 Address" in {
     IpConversions.ipToInt("192.168.0.1") shouldBe 3232235521L
     IpConversions.ipToInt("255.255.255.255") shouldBe 4294967295L
   }
 
-  "ipToLong()" should "produce the correct integer representation for an IPv6 Address" in {
+  "ipToInt()" should "produce the correct integer representation for an IPv6 Address" in {
     IpConversions.ipToInt("2000:123A:ABCD:73F3:1234:1234:1234:1234") shouldBe BigInt("42531122511263480549358276640189233760")
   }
 }
