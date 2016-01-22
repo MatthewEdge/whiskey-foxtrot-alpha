@@ -12,10 +12,19 @@ class IpConversionActor extends EdgeActor {
 
   def receive = {
 
+    /**
+      * Request to convert an IP Address
+      */
     case ConvertIp(ipAddress) =>
-      val result = IpConversions.ipToInt(ipAddress)
-      sender ! result
-      emit(IpConverted(ipAddress, result))
+      try {
+        val result = IpConversions.ipToInt(ipAddress)
+        sender ! result
+
+        // Emit converted event
+        emit(IpConverted(ipAddress, result))
+      } catch {
+        case e: RuntimeException => sender ! e.getMessage
+      }
 
     case m @ _ => unhandled(m)
   }

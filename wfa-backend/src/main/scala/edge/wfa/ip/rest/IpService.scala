@@ -19,10 +19,15 @@ trait IpService extends Service {
       get {
         parameters('ip) { (ip) =>
           val ipActor = Akka.createActor(IpConversionActor.props())
-          val future = (ipActor ? ConvertIp(ip)).mapTo[BigInt]
+          val future = ipActor ? ConvertIp(ip)
 
           onComplete(future) {
-            case Success(res) => complete(IpResponse(ip, res.toString))
+            case Success(res) =>
+              // A successful future doesn't necessarily mean a successful conversion
+              res match {
+                case conv: BigInt => complete(SuccessResponse(ip, res.toString))
+                case failedReason: String => complete(FailureResponse(ip, failedReason))
+              }
             case Failure(ex) => failWith(ex)
           }
         }

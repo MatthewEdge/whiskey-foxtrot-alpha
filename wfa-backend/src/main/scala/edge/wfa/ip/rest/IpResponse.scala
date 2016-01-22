@@ -6,4 +6,12 @@ package edge.wfa.ip.rest
   *
   * Created by medge on 1/22/16.
   */
-case class IpResponse(ipAddress: String, convertedValue: String)
+trait IpResponse {
+  val ipAddress: String
+  val convertedValue: String
+  val failed: Boolean
+  val reason: String
+}
+
+case class SuccessResponse(ipAddress: String, convertedValue: String, failed: Boolean = false, reason: String = "") extends IpResponse
+case class FailureResponse(ipAddress: String, reason: String, convertedValue: String = "", failed: Boolean = true) extends IpResponse
