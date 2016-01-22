@@ -17,6 +17,8 @@
         <scala.binary.version>2.11</scala.binary.version>
         <scalatest.version>2.2.5</scalatest.version>
 
+        <akka.version>2.4.1</akka.version>
+
         <scoverage.version>1.1.1</scoverage.version>
     </properties>
 
@@ -26,10 +28,24 @@
             <artifactId>scala-library</artifactId>
             <version>${scala.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-actor_${scala.binary.version}</artifactId>
+            <version>${akka.version}</version>
+        </dependency>
+
+        <!-- Test Dependencies -->
         <dependency>
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_${scala.binary.version}</artifactId>
             <version>${scalatest.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-testkit_${scala.binary.version}</artifactId>
+            <version>${akka.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -149,6 +165,12 @@
                 <configuration>
                     <repoToken>${env.COVERALLS_TOKEN}</repoToken>
                     <sourceEncoding>UTF-8</sourceEncoding>
+                    <coberturaReports>
+                        <param>${project.build.directory}/cobertura.xml</param>
+                   </coberturaReports>
+                    <sourceDirectories>
+                        <param>${basedir}</param>
+                    </sourceDirectories>
                 </configuration>
             </plugin>
 
