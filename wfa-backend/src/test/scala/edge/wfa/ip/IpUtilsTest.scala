@@ -46,6 +46,6 @@ class IpUtilsTest extends BaseTest {
   }
 
   "ipToLong()" should "produce the correct integer representation for an IPv6 Address" in {
-    IpUtils.ipToInt("2000:123A:ABCD:73F3:1234:1234:1234:1234") shouldBe BigInt("42535665596893913518808076464740897332")
+    IpUtils.ipToInt("2000:123A:ABCD:73F3:1234:1234:1234:1234") shouldBe BigInt("42531122511263480549358276640189233760")
   }
 }

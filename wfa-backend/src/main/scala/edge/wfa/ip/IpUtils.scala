@@ -32,9 +32,9 @@ object IpUtils {
     */
   def ipToInt(ipAddress: String): BigInt = {
 
-    if(isIpVersion4(ipAddress)) {
+    if (isIpVersion4(ipAddress)) {
       ipv4toLong(ipAddress)
-    } else if(isIpVersion6(ipAddress)) {
+    } else if (isIpVersion6(ipAddress)) {
       ipv6toLong(ipAddress)
     } else {
       throw new RuntimeException(s"Invalid IP format. Only IPv4 and IPv6 addresses supported. Got: $ipAddress")
@@ -61,23 +61,37 @@ object IpUtils {
   }
 
   /**
-    * Convert an IPv4 address to a Long integer. Long used to handle large values generated
-    * by larger octets
+    * Convert an IPv6 address to a Long integer. BigInt is used since an IPv6 value is 128bits total
     *
-    * @param ipAddress String IPv4 address
-    * @return Long
+    * @param ipAddress String IPv6 address
+    * @return BigInt
     */
   def ipv6toLong(ipAddress: String): BigInt = {
     val groups = ipAddress.split("\\:")
 
     groups
       .reverse // To give the appropriate indexes
+      .map(hexToBigInt)
       .zipWithIndex
-      .map {
-        case (group, idx) =>
-          BigInt(BigInt(group, 16).toLong * Math.pow(65535, idx).toLong)
-      }
+      .map { case (groupBigInt, idx) => groupBigInt * BigInt(65535).pow(idx) }
       .sum
+  }
+
+  /**
+    * Handy method to convert a Hexadecimal string to a BigInt.
+    *
+    * Credit: http://stackoverflow.com/a/18605816
+    *
+    * @param hex Hexadecimal string
+    * @return BigInt
+    */
+  def hexToBigInt(hex: String): BigInt = {
+    hex
+      .toLowerCase()
+      .toList
+      .map("0123456789abcdef".indexOf(_))
+      .map(BigInt(_))
+      .reduceLeft(_ * 16 + _)
   }
 
 }
