@@ -16,11 +16,11 @@ class IpConversionActorTest extends BaseActorTest {
 
   "IpConversionActor" should "return the correct converted IP within the allotted time" in {
     val testIp = "192.168.0.1"
-    val expectedResult = 3232235521L
+    val expectedResult = BigInt(3232235521L)
 
     within(250 millis) {
       actorRef ! ConvertIp(testIp)
-      expectMsg(3232235521L)
+      expectMsg(expectedResult)
     }
   }
 

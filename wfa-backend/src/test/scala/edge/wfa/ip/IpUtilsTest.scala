@@ -26,8 +26,26 @@ class IpUtilsTest extends BaseTest {
     IpUtils.isIpVersion4("1") shouldBe false
   }
 
+  "isIpVersion6()" should "return true for a valid IPv6 address" in {
+    IpUtils.isIpVersion6("2000:123A:ABCD:73F3:1234:1234:1234:1234") shouldBe true
+    IpUtils.isIpVersion6("2000:123a:abcd:73f3:1234:1234:1234:1234") shouldBe true
+    IpUtils.isIpVersion6("2000:123a:ABcD:73f3:1234:1234:1234:1234") shouldBe true
+  }
+
+  "isIpVersion6()" should "return false for an invalid IPv6 address" in {
+    IpUtils.isIpVersion6("2345:GGGG:FFFF:HHHH:ZZZZ:123D:1234:1234") shouldBe false
+    IpUtils.isIpVersion6("192.168.1") shouldBe false
+    IpUtils.isIpVersion6("255.255.255.255/16") shouldBe false
+    IpUtils.isIpVersion6("Hello, World") shouldBe false
+    IpUtils.isIpVersion6("1") shouldBe false
+  }
+
   "ipToLong()" should "produce the correct integer representation for an IPv4 Address" in {
-    IpUtils.iptoLong("192.168.0.1") shouldBe 3232235521L
-    IpUtils.iptoLong("255.255.255.255") shouldBe 4294967295L
+    IpUtils.ipToInt("192.168.0.1") shouldBe 3232235521L
+    IpUtils.ipToInt("255.255.255.255") shouldBe 4294967295L
+  }
+
+  "ipToLong()" should "produce the correct integer representation for an IPv6 Address" in {
+    IpUtils.ipToInt("2000:123A:ABCD:73F3:1234:1234:1234:1234") shouldBe BigInt("42535665596893913518808076464740897332")
   }
 }

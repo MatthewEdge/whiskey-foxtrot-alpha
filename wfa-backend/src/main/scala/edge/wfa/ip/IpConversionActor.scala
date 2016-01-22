@@ -13,7 +13,7 @@ class IpConversionActor extends EdgeActor {
   def receive = {
 
     case ConvertIp(ipAddress) =>
-      sender ! IpUtils.iptoLong(ipAddress)
+      sender ! IpUtils.ipToInt(ipAddress)
 
     case m @ _ => unhandled(m)
   }
