@@ -4,8 +4,6 @@
 
 by Matthew Edge
 
-1792131
-
 ## Running
 
 From source, running the ```edge.wfa.Main``` class will spin up the Akka HTTP Web Server on localhost, port 8080. To submit
